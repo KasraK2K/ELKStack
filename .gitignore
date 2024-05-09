@@ -1,4 +1,5 @@
 docker/backup/
 javascript/node_modules/
+docker/elasticsearch/config/certs/
 
 **/package-lock.json

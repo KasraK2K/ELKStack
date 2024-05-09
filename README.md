@@ -8,6 +8,9 @@ Go to `docker` folder and run this command:
 mkdir -p backup/{elasticsearch,logstash,kibana}
 sudo chown -R 1000:1000 backup/
 docker compose -p ELKStack up -d
+mkdir -p ./elasticsearch/config/certs
+cd ./elasticsearch/config/certs
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout elasticsearch.key -out elasticsearch.crt -subj "/CN=elasticsearch"
 ```
 &nbsp;
 
@@ -17,12 +20,12 @@ docker logs elasticsearch
 docker logs logstash
 docker logs kibana
 ```
+&nbsp;
 
 Check elasticsearch health:
 ```bash
 curl http://localhost:9200/_cluster/health?pretty
 ```
-&nbsp;
 
 Example response:
 ```bash
@@ -47,6 +50,41 @@ Example response:
 &nbsp;
 
 Now kibana is accessible in [http://<host_ip>:5600](http://<host_ip>:5600)
+&nbsp;
+
+Get/Generate `Kibana token` need to know `Elasticsearch Container ID` so copy id of container appear with this command:
+```bash
+docker ps
+```
+
+Then put in this command and get token:
+```bash
+docker exec -it <elasticsearch-container-id> bin/elasticsearch-create-enrollment-token -s kibana
+# or
+docker exec -it elasticsearch bin/elasticsearch-create-enrollment-token -s kibana
+```
+
+Now copy generated token and paste to Kibana UI field and it want's generated code from kibana log so watch kibana log with this command:
+```bash
+docker logs kibana
+```
+&nbsp;
+
+Now we can create user and password with one of these ways:
+
+### Interactive
+```bash
+docker exec -it <elasticsearch-container-id> bin/elasticsearch-setup-passwords interactive
+# or
+docker exec -it elasticsearch bin/elasticsearch-setup-passwords interactive
+```
+
+### Auto
+```bash
+docker exec -it <elasticsearch-container-id> bin/elasticsearch-setup-passwords auto
+# or
+docker exec -it elasticsearch bin/elasticsearch-setup-passwords auto
+```
 &nbsp;
 
 ## Javascript
