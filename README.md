@@ -5,7 +5,9 @@ Elasticsearch, Logstash, Kibana
 ## Docker
 Go to `docker` folder and run this command:
 ```bash
-docker compose up -d
+mkdir -p backup/{elasticsearch,logstash,kibana}
+sudo chown -R 1000:1000 backup/
+docker compose -p ELKStack up -d
 ```
 &nbsp;
 
