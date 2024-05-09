@@ -7,10 +7,11 @@ Go to `docker` folder and run this command:
 ```bash
 mkdir -p backup/{elasticsearch,logstash,kibana}
 sudo chown -R 1000:1000 backup/
-docker compose -p ELKStack up -d
 mkdir -p ./elasticsearch/config/certs
 cd ./elasticsearch/config/certs
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout elasticsearch.key -out elasticsearch.crt -subj "/CN=elasticsearch"
+cd ../../..
+docker compose up -d
 ```
 &nbsp;
 
