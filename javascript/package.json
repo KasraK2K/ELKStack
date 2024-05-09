@@ -1,0 +1,26 @@
+{
+  "name": "elkstack",
+  "version": "1.0.0",
+  "description": "ELK Stack",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/KasraK2K/ELKStack.git"
+  },
+  "keywords": [
+    "ELK"
+  ],
+  "author": "Kasra Karami <Kasra.Karami.KK@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KasraK2K/ELKStack/issues"
+  },
+  "homepage": "https://github.com/KasraK2K/ELKStack#readme",
+  "dependencies": {
+    "winston": "^3.13.0",
+    "winston-elasticsearch": "^0.18.0"
+  }
+}
