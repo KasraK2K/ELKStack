@@ -3,7 +3,7 @@ Elasticsearch, Logstash, Kibana
 &nbsp;
 
 ## Docker
-go to `docker` folder and run this command:
+Go to `docker` folder and run this command:
 ```bash
 docker compose up -d
 ```
